@@ -9,7 +9,7 @@ type Usuario = {
   id: string;
   nome: string;
   email: string;
-  avatar: string; // Alterado de number para string
+  avatar: string; 
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -71,49 +71,49 @@ export default function Users() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>Usuários</Text>
+    <View style={estilos.container}>
+      <Text style={estilos.titulo}>Usuários</Text>
       
-      <ScrollView style={styles.listaUsuarios}>
+      <ScrollView style={estilos.listaUsuarios}>
         {usuarios.map((usuario) => (
-          <View key={usuario.id} style={styles.card}>
+          <View key={usuario.id} style={estilos.card}>
             <Image
-              source={{ uri: usuario.avatar }} // Alterado para usar URI da URL
-              style={styles.avatarCard}
+              source={{ uri: usuario.avatar }} 
+              style={estilos.avatarCard}
               onError={() => console.log('Erro ao carregar avatar')}
             />
-            <View style={styles.infoUsuario}>
-              <Text style={styles.nome}>{usuario.nome}</Text>
-              <Text style={styles.email}>{usuario.email}</Text>
+            <View style={estilos.infoUsuario}>
+              <Text style={estilos.nome}>{usuario.nome}</Text>
+              <Text style={estilos.email}>{usuario.email}</Text>
             </View>
             <TouchableOpacity
               onPress={() => handleExcluir(usuario.id)}
-              style={styles.botaoExcluir}
+              style={estilos.btnExcluir}
             >
-              <Text style={styles.iconeLixo}>🗑️</Text>
+              <Text style={estilos.btnTextoExcluir}>Excluir</Text>
             </TouchableOpacity>
           </View>
         ))}
         
         {usuarios.length === 0 && (
-          <View style={styles.vazio}>
-            <Text style={styles.textoVazio}>Nenhum usuário cadastrado</Text>
-            <Text style={styles.textoVazioSub}>Clique no + para adicionar um usuário</Text>
+          <View style={estilos.vazio}>
+            <Text style={estilos.textoVazio}>Nenhum usuário cadastrado</Text>
+            <Text style={estilos.textoVazioSub}>Clique no + para adicionar um usuário</Text>
           </View>
         )}
       </ScrollView>
       
       <TouchableOpacity
-        style={styles.botaoAdicionar}
+        style={estilos.btnAdicionar}
         onPress={() => navigation.navigate('Cadastrar')}
       >
-        <Text style={styles.iconeAdicionar}>+</Text>
+        <Text style={estilos.btnTextoAdicionar}>+</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const estilos = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ed145b',
@@ -162,13 +162,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
   },
-  botaoExcluir: {
+  btnExcluir: {
     padding: 10,
+    backgroundColor: '#FF3B30',
+    borderRadius: 5,
   },
-  iconeLixo: {
-    fontSize: 20,
+  btnTextoExcluir: {
+    fontSize: 14,
+    color: 'white',
+    fontWeight: 'bold',
   },
-  botaoAdicionar: {
+  btnAdicionar: {
     position: 'absolute',
     right: 20,
     bottom: 20,
@@ -184,7 +188,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  iconeAdicionar: {
+  btnTextoAdicionar: {
     fontSize: 30,
     color: '#ed145b',
     fontWeight: 'bold',

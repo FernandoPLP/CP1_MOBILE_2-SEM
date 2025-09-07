@@ -11,7 +11,7 @@ type Usuario = {
   id: string;
   nome: string;
   email: string;
-  avatar: string; // Alterado de number para string para armazenar URL
+  avatar: string;
 };
 
 const STORAGE_KEY = '@usuarios_app';
@@ -20,8 +20,8 @@ export default function AddUsers() {
   const navigation = useNavigation<NavigationProp>();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [avatarUrl, setAvatarUrl] = useState(''); // Novo estado para URL do avatar
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(null); // Para pré-visualização
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
 
   const handleCarregarPreview = () => {
     if (avatarUrl.trim()) {
@@ -70,11 +70,11 @@ export default function AddUsers() {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.titulo}>Adicionar Usuário</Text>
+    <ScrollView style={estilos.container}>
+      <Text style={estilos.titulo}>Adicionar Usuário</Text>
       
       <TextInput
-        style={styles.input}
+        style={estilos.input}
         placeholder="Nome"
         value={nome}
         onChangeText={setNome}
@@ -82,7 +82,7 @@ export default function AddUsers() {
       />
       
       <TextInput
-        style={styles.input}
+        style={estilos.input}
         placeholder="E-mail"
         value={email}
         onChangeText={setEmail}
@@ -90,10 +90,10 @@ export default function AddUsers() {
         keyboardType="email-address"
       />
       
-      <Text style={styles.subtitulo}>URL do Avatar:</Text>
+      <Text style={estilos.subtitulo}>URL do Avatar:</Text>
       
       <TextInput
-        style={styles.input}
+        style={estilos.input}
         placeholder="Cole a URL da imagem do avatar"
         value={avatarUrl}
         onChangeText={setAvatarUrl}
@@ -102,16 +102,16 @@ export default function AddUsers() {
         autoCapitalize="none"
       />
       
-      <TouchableOpacity style={styles.botaoCarregar} onPress={handleCarregarPreview}>
-        <Text style={styles.textoBotaoCarregar}>Carregar Preview</Text>
+      <TouchableOpacity style={estilos.btnCarregar} onPress={handleCarregarPreview}>
+        <Text style={estilos.btnTextoCarregar}>Carregar Preview</Text>
       </TouchableOpacity>
       
       {avatarPreview && (
-        <View style={styles.previewContainer}>
-          <Text style={styles.subtitulo}>Preview do Avatar:</Text>
+        <View style={estilos.previewContainer}>
+          <Text style={estilos.subtitulo}>Preview do Avatar:</Text>
           <Image
             source={{ uri: avatarPreview }}
-            style={styles.avatarPreview}
+            style={estilos.avatarPreview}
             onError={() => {
               Alert.alert('Erro', 'Não foi possível carregar a imagem desta URL');
               setAvatarPreview(null);
@@ -120,14 +120,14 @@ export default function AddUsers() {
         </View>
       )}
       
-      <TouchableOpacity style={styles.botaoSalvar} onPress={handleSalvar}>
-        <Text style={styles.textoBotao}>Salvar</Text>
+      <TouchableOpacity style={estilos.btnSalvar} onPress={handleSalvar}>
+        <Text style={estilos.btnTexto}>Salvar</Text>
       </TouchableOpacity>
     </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
+const estilos = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ed145b',
@@ -155,14 +155,14 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     marginTop: 10,
   },
-  botaoCarregar: {
+  btnCarregar: {
     backgroundColor: '#ff6b9d',
     borderRadius: 8,
     padding: 12,
     alignItems: 'center',
     marginBottom: 20,
   },
-  textoBotaoCarregar: {
+  btnTextoCarregar: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
@@ -178,14 +178,14 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: 'white',
   },
-  botaoSalvar: {
+  btnSalvar: {
     backgroundColor: 'white',
     borderRadius: 8,
     padding: 15,
     alignItems: 'center',
     marginTop: 20,
   },
-  textoBotao: {
+  btnTexto: {
     color: '#ed145b',
     fontSize: 18,
     fontWeight: 'bold',
